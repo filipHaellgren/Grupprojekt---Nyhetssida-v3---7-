@@ -111,7 +111,7 @@ Sökord: ${searchKeyword}
         <div
           class="d-flex pb-2 pt-1 align-content-center justify-content-between gap-2"
         >
-          <h3 class="newsTitle m-0 p-0">${article.title}</h3>
+          <h3 class="newsTitle m-0 p-0"><span style="color: #DE667B;">BREAKING NEWS: </span>${article.title}</h3>
           <button class="favorite m-0 p-0 pe-3 bg-white border-0">
             <i
               class="starIcon fa-regular fa-star align-self-center text-primary"
