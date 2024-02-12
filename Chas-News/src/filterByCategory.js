@@ -117,8 +117,6 @@ export function renderContent(articles, searchKeyword) {
   articlesContainer.innerHTML = html;
 }
 
-
-
 // Function to get user search input
 export let getUserSearchInput = () => {
   let searchInput = document.querySelector('#search-input');
@@ -146,7 +144,8 @@ function saveSearchHistory(searchKeyword) {
 
   // If it's not a duplicate, add it to the search history
   if (!isDuplicate) {
-    searchHistory.push({ keyword: searchKeyword, dateTime: dateTime });
+    const uniqueId = 'search_' + Date.now(); // Generate a unique ID
+    searchHistory.push({ id: uniqueId, keyword: searchKeyword, dateTime: dateTime });
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
   }
 }
@@ -160,11 +159,10 @@ export function renderSearchHistory() {
   // Render each search history item
   searchHistory.forEach((item) => {
     let listItem = document.createElement('li');
-    listItem.textContent = `${item.keyword} - ${item.dateTime}`;
+    listItem.innerHTML = `<span id="${item.id}_keyword">${item.keyword}</span> - <span id="${item.id}_dateTime">${item.dateTime}</span>`;
     searchHistoryList.appendChild(listItem);
   });
 }
 
 // Call the function to render search history when the page loads
 renderSearchHistory();
-

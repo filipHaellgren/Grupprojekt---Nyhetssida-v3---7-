@@ -28,3 +28,27 @@ header.d-md-flex.justify-content-between.align-items-center {
 nav.navbar.navbar-expand-lg.bg-body-tertiary {
   margin: 0 3rem;
 }
+
+aside{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#search-history-list{
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+[id$="_keyword"] {
+  font-weight: bold;
+  color: #5BC7A5;
+
+}
+
+/* Styling for date and time */
+[id$="_dateTime"] {
+  font-style: italic;
+  color: gray;
+}
