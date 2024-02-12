@@ -29,7 +29,7 @@ nav.navbar.navbar-expand-lg.bg-body-tertiary {
   margin: 0 3rem;
 }
 
-aside{
+#search-history-container{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,14 +41,14 @@ aside{
   flex-direction: column;
   align-items: flex-end;
 }
-[id$="_keyword"] {
+.keyword {
   font-weight: bold;
   color: #5BC7A5;
-
+  cursor: pointer;
 }
 
 /* Styling for date and time */
-[id$="_dateTime"] {
+.date-time {
   font-style: italic;
   color: gray;
 }

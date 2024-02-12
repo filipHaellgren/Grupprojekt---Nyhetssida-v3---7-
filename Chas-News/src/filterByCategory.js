@@ -159,8 +159,17 @@ export function renderSearchHistory() {
   // Render each search history item
   searchHistory.forEach((item) => {
     let listItem = document.createElement('li');
-    listItem.innerHTML = `<span id="${item.id}_keyword">${item.keyword}</span> - <span id="${item.id}_dateTime">${item.dateTime}</span>`;
+    // Assigning classes for styling and data attributes for identifying the keyword
+    listItem.innerHTML = `<span class="keyword" data-keyword="${item.keyword}">${item.keyword}</span> - <span class="date-time">${item.dateTime}</span>`;
     searchHistoryList.appendChild(listItem);
+  });
+
+  // Add event listener to each keyword element
+  document.querySelectorAll('.keyword').forEach(item => {
+    item.addEventListener('click', () => {
+      const keyword = item.getAttribute('data-keyword');
+      requestDataToFilter(keyword); // Trigger a new search with the clicked keyword
+    });
   });
 }
 
