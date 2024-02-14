@@ -257,3 +257,29 @@ footer {
   text-align: center;
   margin-top: 1rem;
 }
+
+
+
+#search-history-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#search-history-list{
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.keyword {
+  font-weight: bold;
+  color: #5BC7A5;
+  cursor: pointer;
+}
+
+/* Styling for date and time */
+.date-time {
+  font-style: italic;
+  color: gray;
+}

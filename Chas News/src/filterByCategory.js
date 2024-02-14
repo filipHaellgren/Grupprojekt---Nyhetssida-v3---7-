@@ -29,7 +29,7 @@
 // URl för sökord: //const urlSearchForBitcoin = `https://newsapi.org/v2/everything?q=${searchKeyword}&apiKey=${apiKey}`;
 
 // Kommentera in första apiKey för att att rendera ut från objektet i localStorage.
-export const apiKey = '';
+export const apiKey = '2188e2d736464810a9de1bf9a5a70713';
 // Kommentera in andra apiKey för att att göra en request och rendera ut färsk data.
 
 
@@ -198,6 +198,58 @@ document.querySelector('#favorites').addEventListener('click', (event) => {
 
 
 
+// Function to save search history
+function saveSearchHistory(searchKeyword) {
+  let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+  
+  // Get current date and time
+  let currentTime = new Date();
+  
+  // Format the date
+  let formattedDate = `${currentTime.getFullYear()}-${('0' + (currentTime.getMonth() + 1)).slice(-2)}-${('0' + currentTime.getDate()).slice(-2)}`;
+  
+  // Format the time
+  let formattedTime = `${('0' + currentTime.getHours()).slice(-2)}:${('0' + currentTime.getMinutes()).slice(-2)}`;
+
+  // Combine date and time
+  let dateTime = `${formattedDate} ${formattedTime}`;
+
+  // Check if the search keyword already exists in the search history
+  const isDuplicate = searchHistory.some(item => item.keyword === searchKeyword);
+
+  // If it's not a duplicate, add it to the search history
+  if (!isDuplicate) {
+    const uniqueId = 'search_' + Date.now(); // Generate a unique ID
+    searchHistory.push({ id: uniqueId, keyword: searchKeyword, dateTime: dateTime });
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+  }
+}
+
+// Function to render search history
+export function renderSearchHistory() {
+  let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+  let searchHistoryList = document.getElementById('search-history-list');
+  // Clear previous content
+  searchHistoryList.innerHTML = '';
+  // Render each search history item
+  searchHistory.forEach((item) => {
+    let listItem = document.createElement('li');
+    // Assigning classes for styling and data attributes for identifying the keyword
+    listItem.innerHTML = `<span class="keyword" data-keyword="${item.keyword}">${item.keyword}</span> - <span class="date-time">${item.dateTime}</span>`;
+    searchHistoryList.appendChild(listItem);
+  });
+
+  // Add event listener to each keyword element
+  document.querySelectorAll('.keyword').forEach(item => {
+    item.addEventListener('click', () => {
+      const keyword = item.getAttribute('data-keyword');
+      requestDataToFilter(keyword); // Trigger a new search with the clicked keyword
+    });
+  });
+}
+
+// Call the function to render search history when the page loads
+renderSearchHistory();
 
 
 
